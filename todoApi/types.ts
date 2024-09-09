@@ -14,7 +14,7 @@ export interface UserMethods {
 
 export type UserModel = Model<UserFields, {}, UserMethods>;
 
-export interface Tasks {
+export interface TaskMutation {
   user: string;
   title: string;
   description: string;

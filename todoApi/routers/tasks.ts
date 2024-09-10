@@ -73,6 +73,9 @@ tasksRouter.put('/:id', auth, async (req: RequestWithUser, res, next) => {
     if (req.user._id.toString() !== taskToUpdate.user.toString()) {
       return res.status(403).send({error: `You have not right to update this task!`});
     }
+    if (req.body.status && req.body.status !== 'in_progress' && req.body.status !== 'complete') {
+      return res.status(400).send({error: 'Status is wrong!'});
+    }
     const taskUpdated = {
       title: req.body.title ? req.body.title : taskToUpdate.title,
       description: req.body.description ? req.body.description : taskToUpdate.description,

@@ -24,6 +24,12 @@ const TaskSchema = new Schema({
   status: {
     type: String,
     default: 'new',
+    validate: {
+      validator: async (value: string) => {
+        return value === 'new' || value === 'is_active' || value === 'complete';
+      },
+      message: 'Status value must be only "new", "is_active", "complete"',
+    },
   }
 });
 const Task = mongoose.model('Task', TaskSchema);
